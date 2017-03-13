@@ -1,0 +1,24 @@
+<SecuritySystem>
+  <RestService>
+    <Host>argus</IpAddr>
+    <Port>8080</Port>
+  </RestService>
+  <UserAccounts>
+    <Account>
+      <FirstName>Kyle</FirstName>
+      <LastName>Burgess</LastName>
+      <Login>admin</Login>
+      <Passwd>Scuba5199</Passwd>
+      <Pictures></Pictures>
+      <Privelages>ADMIN</Privelages>
+    </Account>
+  </UserAccounts>
+  <Cameras>
+    <Camera>
+       <Name>Living Room</Name>
+       <Login>admin</Login>
+       <Passwd>123456</Passwd>
+       <IpAddr>192.168.1.223</IpAddr>
+    </Camera>
+  </Cameras>
+</SecuritySystem>
