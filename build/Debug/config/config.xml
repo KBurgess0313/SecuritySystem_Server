@@ -13,12 +13,4 @@
       <Privelages>ADMIN</Privelages>
     </Account>
   </UserAccounts>
-  <Cameras>
-    <Camera>
-       <Name>Living Room</Name>
-       <Login>admin</Login>
-       <Passwd>123456</Passwd>
-       <IpAddr>192.168.1.223</IpAddr>
-    </Camera>
-  </Cameras>
 </SecuritySystem>
