@@ -18,7 +18,7 @@ CONFIG(debug, debug | release) {
   TARGET = Argusd
 
   LIBS += -L../../../Common/build/Debug
-  LIBS += -L../../../Dependencies/unix/casablanca/Release/Debug/
+  LIBS += -L../../../Dependencies/unix/casablanca/Release/Debug/Binaries
 
   LIBS += -lCommond \
 }
