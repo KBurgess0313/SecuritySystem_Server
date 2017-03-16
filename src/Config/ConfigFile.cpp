@@ -13,17 +13,6 @@ ConfigFilePtr ConfigFile::instance()
   return config;
 }
 
-bool ConfigFile::isDebugging()
-{
-  bool out = false;
-  if(!mFile.empty())
-  {
-    out = mFile.get<bool>("SecuritySystem.Debugging");
-  }
-
-  return out;
-}
-
 Common::Types::AccountPtrList ConfigFile::getAccounts()
 {
   using namespace boost::property_tree;
@@ -52,11 +41,19 @@ Common::Types::CameraFeedPtrList ConfigFile::getCameraFeeds()
 
   if(!mFile.empty())
   {
+      try
+      {
     for(const ptree::value_type& value : mFile.get_child("SecuritySystem.Cameras"))
     {
-      CameraFeedPtr camera = CameraFeedPtr(new CameraFeed(value));
+      boost::property_tree::ptree tree = value.second;
+      CameraFeedPtr camera = CameraFeedPtr(new CameraFeed(tree));
       out.push_back(camera);
     }
+      }
+      catch(std::exception e)
+      {
+
+      }
   }
 
   return out;

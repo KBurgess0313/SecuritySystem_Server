@@ -102,6 +102,9 @@ namespace Interfaces {
     bp::ptree message = CI::Utils::requestToXml(aRequest);
     CIM::Types::Value messageType = CI::Utils::getMessageType(message);
 
+    std::thread::id tid = std::this_thread::get_id();
+    std::cout << "Post in Thread: " << tid << "\n";
+
     web::http::http_response response;
     switch(messageType)
     {
@@ -176,7 +179,7 @@ namespace Interfaces {
   {
     web::http::http_response response;
 
-    boost::uuids::uuid sessionId = boost::lexical_cast<boost::uuids::uuid>(aMessage.get<std::string>("Message.Camera.SessionId"));
+    boost::uuids::uuid sessionId = boost::lexical_cast<boost::uuids::uuid>(aMessage.get<std::string>("Message.Cameras.SessionId"));
 
     if(!isSessionIdValid(sessionId))
     {
@@ -184,7 +187,7 @@ namespace Interfaces {
       return response;
     }
 
-    CIM::CameraMessage message = CIM::CameraMessage(aMessage.get_child("Message.Camera"));
+    CIM::CameraMessage message = CIM::CameraMessage(aMessage);
 
     CT::CameraFeedPtr cam = message.getCamera();
 

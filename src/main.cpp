@@ -6,6 +6,7 @@
 #include "Internal/ServerSignals.h"
 
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -15,12 +16,16 @@ void loadSettings();
 
 int main(void)
 {
+  std::thread::id tid = std::this_thread::get_id();
+
+  std::cout << "Main Thread: " << tid << "\n";
   Interfaces::CentralService service = Interfaces::CentralService();
 
   loadSettings();
 
   while(1)
   {
+    sleep(1);
   }
 
   return 0;
@@ -35,11 +40,6 @@ void loadSettings()
 void loadAccounts()
 {
   Config::ConfigFilePtr config = Config::ConfigFile::instance();
-
-  if(config->isDebugging())
-  {
-    sleep(10);
-  }
 
   Internal::ServerSignalsPtr serverSignals = Internal::ServerSignals::getInstance();
 
